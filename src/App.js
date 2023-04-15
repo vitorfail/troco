@@ -77,13 +77,23 @@ function App() {
     setpopup_certo(false)
     settroco(0.00)
     setdisplay_troco('troco')
+    
+  }
+  function apagar_notas(){
+    var r = perguntas[Math.floor(Math.random()*perguntas.length)]
+    setpergunta_principal(r[0])
+    setresposta(r[1])
+    setpopup_certo(false)
+    settroco(0.00)
+    setdisplay_troco('troco')
+    setnotas([<></>])
     setnotas([<>
-              <img src={Nota2} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='2c' name='2' alt='2' className='nota' />
-          <img src={Nota5} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='5c' name='5' alt='5' className='nota' />
-          <img src={Nota10} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='10c' name='10' alt='10' className='nota'/>
-          <img src={Nota20} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='20c' name='20' alt='20' className='nota'/>
-          <img src={Nota50} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='50c' name='50' alt='50' className='nota'/>
-          <img src={Nota100} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='100c' name='100' alt='100' className='nota'/>
+      <img src={Nota2} style={{top:'inherit'}} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='2c' name='2' alt='2' className='nota' />
+      <img src={Nota5}  style={{top:'inherit'}} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='5c' name='5' alt='5' className='nota' />
+      <img src={Nota10}  style={{top:'inherit'}} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='10c' name='10' alt='10' className='nota'/>
+      <img src={Nota20}   style={{top:'inherit'}}onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='20c' name='20' alt='20' className='nota'/>
+      <img src={Nota50}  style={{top:'inherit'}} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='50c' name='50' alt='50' className='nota'/>
+      <img src={Nota100}  style={{top:'inherit'}} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='100c' name='100' alt='100' className='nota'/>
     </>])
   }
   return (
@@ -91,7 +101,7 @@ function App() {
       <div className={popup_certo?'popup-certo show': 'popup-certo'}>
         <div className='modal'>
           <p>O troco foi correto!</p>
-          <button onClick={() => reacarregar()}>OK</button>
+          <button onClick={() => apagar_notas()}>OK</button>
         </div>
       </div>
       <div className='pergunta'>
