@@ -77,7 +77,14 @@ function App() {
     setpopup_certo(false)
     settroco(0.00)
     setdisplay_troco('troco')
-    setnotas([<></>])
+    setnotas([<>
+              <img src={Nota2} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='2c' name='2' alt='2' className='nota' />
+          <img src={Nota5} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='5c' name='5' alt='5' className='nota' />
+          <img src={Nota10} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='10c' name='10' alt='10' className='nota'/>
+          <img src={Nota20} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='20c' name='20' alt='20' className='nota'/>
+          <img src={Nota50} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='50c' name='50' alt='50' className='nota'/>
+          <img src={Nota100} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='100c' name='100' alt='100' className='nota'/>
+    </>])
   }
   return (
     <div className="App">
