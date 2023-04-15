@@ -23,6 +23,7 @@ function App() {
   ["O serviço saiu por R$ 7,00 e te entregam um nota de R$ 20,00", 13]]
   const [ pergunta_principal, setpergunta_principal] = useState('')
   const [ resposta, setresposta] = useState(0)
+  const [troco, settroco] = useState(0)
   const [count2, setcount2] = useState(0)
   const [count5, setcount5] = useState(0)
   const [count10, setcount10] = useState(0)
@@ -31,30 +32,33 @@ function App() {
   const [count100, setcount100] = useState(0)
   const pos = 27
   function adicionar_nota(nota, nome){
-    var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
-    var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
-    var lista_conta_definir = {'2':setcount2, '5':setcount5, '10':setcount10, '20':setcount20, '50':setcount50, '100':setcount100}
-    var n = null
-    var r = lista_conta[String(nota)]+String(nota)+'c'
-    if(nome === '2') n= Nota2
-    if(nome === '5') n= Nota5
-    if(nome === '10') n= Nota10
-    if(nome === '20') n= Nota20
-    if(nome === '50') n= Nota50
-    if(nome === '100') n= Nota100
-    let element = <img src={n}   onClick={(e) => adicionar_nota(e.currentTarget.id)}  id={r} name={nome}  alt={nome} className='nota'/>
-    setnotas([...notas, element]);
-    if(lista_conta[String(nota)] === 0){
-      let ele = document.getElementById(nota+'c')
-      ele.style.top = pos+'%'
-      ele.style.left = (pos*(lista_pos[String(nota)])/2)+'%'
+    if(resposta > troco || troco ===0 ){
+      var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
+      var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
+      var lista_conta_definir = {'2':setcount2, '5':setcount5, '10':setcount10, '20':setcount20, '50':setcount50, '100':setcount100}
+      var n = null
+      var r = lista_conta[String(nota)]+String(nota)+'c'
+      if(nome === '2') n= Nota2
+      if(nome === '5') n= Nota5
+      if(nome === '10') n= Nota10
+      if(nome === '20') n= Nota20
+      if(nome === '50') n= Nota50
+      if(nome === '100') n= Nota100
+      let element = <img src={n}   onClick={(e) => adicionar_nota(e.currentTarget.id)}  id={r} name={nome}  alt={nome} className='nota'/>
+      setnotas([...notas, element]);
+      if(lista_conta[String(nota)] === 0){
+        let ele = document.getElementById(nota+'c')
+        ele.style.top = pos+'%'
+        ele.style.left = (pos*(lista_pos[String(nota)])/2)+'%'
+      }
+      else{
+        let ele = document.getElementById((lista_conta[String(nota)]-1)+String(nota)+'c')
+        ele.style.top = (pos+lista_conta[String(nota)]+1)+'%'
+        ele.style.left = (pos*(lista_pos[String(nota)]/2))+'%' 
+      }
+      lista_conta_definir[String(nota)](lista_conta[String(nota)]+1)
+      settroco(troco+parseInt(nota))
     }
-    else{
-      let ele = document.getElementById((lista_conta[String(nota)]-1)+String(nota)+'c')
-      ele.style.top = (pos+lista_conta[String(nota)]+1)+'%'
-      ele.style.left = (pos*(lista_pos[String(nota)]/2))+'%' 
-    }
-    lista_conta_definir[String(nota)](lista_conta[String(nota)]+1)
   }
   useEffect(() =>{
     var r = perguntas[Math.floor(Math.random()*perguntas.length)]
@@ -65,6 +69,7 @@ function App() {
     <div className="App">
       <div className='pergunta'>
         <div className='questao'>
+          <div className='troco'>R$ {troco}</div>
           <p>{pergunta_principal}</p>
         </div>
       </div>
