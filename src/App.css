@@ -2,7 +2,8 @@
   --distancia: 3%;
 }
 .App {
-  background: url('./images/fundo.jpg');
+  background-image: url('./images/fundo.jpg');
+  background-size: cover;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -10,10 +11,14 @@
   flex-direction: column;
 }
 .pergunta{
+  color: white;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   width: 100%;
-  height: 10%;
+  height: 17%;
   position: absolute;
-  background: black;
+  background: rgb(7, 88, 41);
   top: 0;
 }
 .cedulas{
@@ -25,6 +30,7 @@
   align-items: center;
 }
 .nota{
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.514);
   top:70%;
   position: absolute;
   scale: 0.9;
@@ -47,10 +53,10 @@ img[name= '20']{
   left: 51%;
 }
 img[name= '50']{
-  right: 32%;
+  left: 60%;
 }
 img[name= '100']{
-  right: 23%;
+  left: 69%;
 }
 .nota:hover{
   cursor: pointer;
@@ -60,4 +66,28 @@ img[name= '100']{
   width: 100%;
   height: 80%;
   display: flex;
+}
+@media screen and (max-width:900px) {
+  .nota{
+    height: 121px;
+    width: 61px;
+  }
+  img[name= '2'] {
+    left: 3%;
+  }
+  img[name= '5'] {
+    left: 18%;
+  }
+  img[name= '10'] {
+    left: 33%;
+  }
+  img[name= '20'] {
+    left: 48%;
+  }
+  img[name= '50'] {
+    left: 63%;
+  }
+  img[name= '100'] {
+    left: 78%;
+  }
 }

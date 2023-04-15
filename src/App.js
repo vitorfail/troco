@@ -5,7 +5,7 @@ import Nota10 from './images/10.jpg'
 import Nota20 from './images/20.jpg'
 import Nota50 from './images/50.jpg'
 import Nota100 from './images/100.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -18,23 +18,24 @@ function App() {
           <img src={Nota50} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='50c' name='50' alt='50' className='nota'/>
           <img src={Nota100} onClick={(e) => adicionar_nota(e.currentTarget.id, e.currentTarget.name)} id='100c' name='100' alt='100' className='nota'/>
   </>])
+  const perguntas = [["A conto ficou por R$ 18,00 e o cliente deu um nota de R$ 50,00", 32], 
+  ["O preço foi R$ 31,00 e deram uma nota de R$ 100,00", 69],
+  ["O serviço saiu por R$ 7,00 e te entregam um nota de R$ 20,00", 13]]
+  const [ pergunta_principal, setpergunta_principal] = useState('')
+  const [ resposta, setresposta] = useState(0)
   const [count2, setcount2] = useState(0)
   const [count5, setcount5] = useState(0)
   const [count10, setcount10] = useState(0)
   const [count20, setcount20] = useState(0)
   const [count50, setcount50] = useState(0)
   const [count100, setcount100] = useState(0)
-  const [pos1, setpos1] = useState(['10%', '10%'])
-  const [pos2, setpos2] = useState(['10%', '20%'])
-  const [pos3, setpos3] = useState(['10%', '30%'])
-  const [pos4, setpos4] = useState(['10%', '40%'])
+  const pos = 27
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
+    var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
     var lista_conta_definir = {'2':setcount2, '5':setcount5, '10':setcount10, '20':setcount20, '50':setcount50, '100':setcount100}
     var n = null
     var r = lista_conta[String(nota)]+String(nota)+'c'
-    console.log(nome)
-    console.log(lista_conta[String(nota)])
     if(nome === '2') n= Nota2
     if(nome === '5') n= Nota5
     if(nome === '10') n= Nota10
@@ -45,20 +46,28 @@ function App() {
     setnotas([...notas, element]);
     if(lista_conta[String(nota)] === 0){
       let ele = document.getElementById(nota+'c')
-      ele.style.top = '5%'
-      ele.style.left = '5%' 
+      ele.style.top = pos+'%'
+      ele.style.left = (pos*(lista_pos[String(nota)])/2)+'%'
     }
     else{
-      console.log('passou aqui '+r )
       let ele = document.getElementById((lista_conta[String(nota)]-1)+String(nota)+'c')
-      ele.style.top = '5%'
-      ele.style.left = '5%' 
+      ele.style.top = (pos+lista_conta[String(nota)]+1)+'%'
+      ele.style.left = (pos*(lista_pos[String(nota)]/2))+'%' 
     }
     lista_conta_definir[String(nota)](lista_conta[String(nota)]+1)
   }
+  useEffect(() =>{
+    var r = perguntas[Math.floor(Math.random()*perguntas.length)]
+    setpergunta_principal(r[0])
+    setresposta(r[1])
+  }, [])
   return (
     <div className="App">
-      <div className='pergunta'></div>
+      <div className='pergunta'>
+        <div className='questao'>
+          <p>{pergunta_principal}</p>
+        </div>
+      </div>
       <div className='espaco_notas'>
       </div>
       <div className='cedulas'>
