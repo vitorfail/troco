@@ -25,29 +25,32 @@
   align-items: center;
 }
 .nota{
+  top:70%;
   position: absolute;
   scale: 0.9;
-  height: 120px;
+  height: 160px;
+  width: 90px;
   margin: 12px;
-  transition: all ease 1s;
+  transition: all ease 0.2s;
 }
+
 img[name= '2']{
-  left: var(--distancia);
+  left: 23%;
 }
 img[name= '5']{
-  left: calc(var(--distancia)*4);
+  left: 32%;
 }
 img[name= '10']{
-  left: calc(var(--distancia)*7);
+  left: 42%;
 }
 img[name= '20']{
-  left: calc(var(--distancia)*10);
+  left: 51%;
 }
 img[name= '50']{
-  left: calc(var(--distancia)*13);
+  right: 32%;
 }
 img[name= '100']{
-  left: calc(var(--distancia)*16);
+  right: 23%;
 }
 .nota:hover{
   cursor: pointer;
