@@ -109,8 +109,8 @@ function App() {
   }
   function remover_nota(nota, id){
     console.log(troco)
-    var novo_troco = troco-parseInt(nota)
-    if(novo_troco < resposta) setdisplay_troco('troco')
+    //var novo_troco = troco-parseInt(nota)
+    //if(novo_troco < resposta) setdisplay_troco('troco')
     settroco(novo_troco)
 
     //var element = document.getElementById(id)
