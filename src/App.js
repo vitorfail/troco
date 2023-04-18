@@ -35,11 +35,15 @@ function App() {
   const [count50, setcount50] = useState(0)
   const [count100, setcount100] = useState(0)
   const [popup_errado, setpopup_errado] = useState(false)
-  const [ popup_certo, setpopup_certo] = useState(false)
+  const [popup_certo, setpopup_certo] = useState(false)
+  const [popup_inicio, setpopup_inicio] = useState(false)
+  const [popup_resultado, setpopup_resultado] = useState(false)
   const [animation, setanimation] = useState(false)
+  const [inicio, setinicio] = useState(false)
   const pos = 27
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(12000);
   const [isRunning, setIsRunning] = useState(false);
+  const [contagem_de_acertos, setcontagem_de_acertos] = useState(0)
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
     var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
@@ -67,12 +71,15 @@ function App() {
     lista_conta_definir[String(nota)](lista_conta[String(nota)]+1)
     settroco(troco+parseInt(nota))
     if(troco+parseInt(nota) > resposta){
+      setIsRunning(false)
       setdisplay_troco('troco errado')
       setpopup_errado(true)
     }
     if(troco+parseInt(nota) === resposta){
+      setIsRunning(false)
       setdisplay_troco('troco certo')
       setpopup_certo(true)
+      setcontagem_de_acertos(contagem_de_acertos+1)
     }
     setanimation(true)
     setTimeout(() =>{
@@ -82,11 +89,14 @@ function App() {
   useEffect(() =>{
     if(isRunning === false){
       reacarregar()
+      if(inicio === false){
+        setpopup_inicio(true)
+      }
     }
     let intervalId;
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
-      intervalId = setInterval(() => setTime(time + 1), 10);
+      intervalId = setInterval(() => setTime(time - 1), 10);
     }
       return () => clearInterval(intervalId);
   }, [isRunning, time]);
@@ -112,6 +122,11 @@ function App() {
   // Method to reset timer back to 0
   const reset = () => {
     setTime(0);
+  }
+  function iniciar(){
+    setpopup_inicio(false)
+    startAndStop()
+    setinicio(true)
   }
   function reacarregar(){
     var r = perguntas[Math.floor(Math.random()*perguntas.length)]
@@ -162,24 +177,43 @@ function App() {
     console.log(display_troco)
     console.log(count2)
   }
+  function voltar_ao_jogo(){
+    apagar_notas()
+    setIsRunning(true)
+    setpopup_certo(false)
+    setpopup_errado(false)
+  }
   return (
     <div className="App">
       <div className={popup_certo?'popup-certo show': 'popup-certo'}>
         <div className='modal'>
           <img src={Certo} alt='certo'></img>
           <p>O troco foi correto!</p>
-          <button onClick={() => apagar_notas()}>OK</button>
+          <button onClick={() => voltar_ao_jogo()}>OK</button>
         </div>
       </div>
       <div className={popup_errado?'popup-errado show': 'popup-errado'}>
         <div className='modal'>
           <img src={Errado} alt='errado'></img>
           <p>O troco errado!</p>
-          <button onClick={() => apagar_notas()}>OK</button>
+          <button onClick={() => voltar_ao_jogo()}>OK</button>
+        </div>
+      </div>
+      <div className={popup_inicio?'popup-inicio show': 'popup-inicio'}>
+        <div className='modal'>
+          <p>Olá!! Agora você irá responder inúmeras situações onde terá que 
+            respassar o troco. Será dado um tempo de <strong>2 minutos</strong>. A medida que você errar será descontado 20 segundos do tempo que lhe resta. Ao final será data sua pontuação</p>
+          <button onClick={() => iniciar()}>OK</button>
+        </div>
+      </div>
+      <div className={popup_resultado?'popup-resultado show': 'popup-resultado'}>
+        <div className='modal'>
+          <p>ACABOU!!Ao todo você acertou {contagem_de_acertos} peguntas. Parabens!!</p>
+          <button onClick={() => iniciar()}>OK</button>
         </div>
       </div>
       <div className='pergunta'>
-        <div id={animation? 'troco': ''} onClick={() => startAndStop()} className={display_troco}>R$ {troco}</div>
+        <div id={animation? 'troco': ''} className={display_troco}>R$ {troco}</div>
         <div className='questao'>
           <p className='cronometro'>
             {hours}:{minutes.toString().padStart(2, "0")}:

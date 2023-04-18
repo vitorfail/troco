@@ -2,7 +2,7 @@
   --distancia: 3%;
 }
 @font-face {
-  font-family: Digial;
+  font-family: Digital;
   src: url('./font/Calculator.ttf');
 }
 .App {
@@ -35,6 +35,8 @@
   width: 90%;
 }
 .cronometro{
+  margin: 2px;
+  font-size: 22px;
   font-family: Digital;
   text-align: center;
   width: 100%;
@@ -90,7 +92,7 @@ img[name= '100']{
   animation-duration: 0.8s;
 }
 .troco{
-  font-family: Digial;
+  font-family: Digital;
   height: 100%;
   display: flex;
   align-items: center;
@@ -108,7 +110,7 @@ img[name= '100']{
 .troco.certo{
   color: rgb(0, 146, 32);
 }
-.popup-certo, .popup-errado{
+.popup-certo, .popup-errado, .popup-inicio, .popup-resultado{
   z-index: 90;
   display: none;
   justify-content: center;
@@ -118,13 +120,13 @@ img[name= '100']{
   position: absolute;
   background: rgba(0, 0, 0, 0.517);
 }
-.popup-certo.show, .popup-errado.show{
+.popup-certo.show, .popup-errado.show, .popup-inicio.show, .popup-resultado.show{
   display: flex;
 }
-.popup-certo .modal, .popup-errado .modal{
+.popup-certo .modal, .popup-errado .modal, .popup-inicio .modal, .popup-resultado .modal{
   animation-name: aparecer;
   animation-duration: 0.2s;
-  font-size: 30px;
+  font-size: 22px;
   transition: all ease 0.2s;
   background: white;
   display: flex;
@@ -135,8 +137,13 @@ img[name= '100']{
   height: 350px;
   box-shadow: 3px 3px  22px rgba(0, 0, 0, 0.986);
 }
-.popup-certo .modal img, .popup-errado .modal img{
+.popup-certo .modal img, .popup-errado .modal img, .popup-inicio .modal img{
   width: 140px;
+}
+.modal p{
+  text-align: center;
+  align-items: center;
+  margin: 10px;
 }
 .popup-certo .modal button{
   font-size: 30px;
@@ -157,6 +164,22 @@ img[name= '100']{
   background: rgb(175, 9, 9);
   color: white;
   transition: all ease 0.1s;  
+}
+.popup-inicio .modal button, .popup-resultado .modal button{
+  font-size: 30px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  background: rgb(40, 26, 230);
+  color: white;
+  transition: all ease 0.1s;  
+}
+.popup-inicio .modal button:hover, .popup-resultado .modal button:hover{
+  cursor: pointer;
+  background: white;
+  color: rgb(40, 26, 230);
+  border: 3px solid rgb(40, 26, 230);
 }
 .popup-certo .modal button:hover{
   cursor: pointer;
