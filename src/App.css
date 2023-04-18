@@ -22,8 +22,15 @@
   width: 100%;
   height: 17%;
   position: absolute;
-  background: rgb(7, 88, 41);
+  background: rgb(37, 37, 37);
   top: 0;
+}
+.questao{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 .cedulas{
   width: 100%;
@@ -71,6 +78,10 @@ img[name= '100']{
   height: 80%;
   display: flex;
 }
+#troco{
+  animation-name: brilhar;
+  animation-duration: 0.8s;
+}
 .troco{
   font-family: Digial;
   height: 100%;
@@ -80,8 +91,7 @@ img[name= '100']{
   font-size: 30px;
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
-  position: absolute;
-  width: 100px;
+  width: 10%;
   left: 0;
   top: 0;
 }
@@ -91,7 +101,7 @@ img[name= '100']{
 .troco.certo{
   color: rgb(0, 146, 32);
 }
-.popup-certo{
+.popup-certo, .popup-errado{
   z-index: 90;
   display: none;
   justify-content: center;
@@ -101,10 +111,10 @@ img[name= '100']{
   position: absolute;
   background: rgba(0, 0, 0, 0.589);
 }
-.popup-certo.show{
+.popup-certo.show, .popup-errado.show{
   display: flex;
 }
-.popup-certo .modal{
+.popup-certo .modal, .popup-errado .modal{
   font-size: 30px;
   transition: all ease 0.2s;
   background: white;
@@ -113,9 +123,12 @@ img[name= '100']{
   align-items: center;
   flex-direction: column;
   width: 600px;
-  height: 300px;
+  height: 350px;
   border-radius: 20px;
   box-shadow: 0px, 0px, 0px, 16px rgba(0, 0, 0, 0.726);
+}
+.popup-certo .modal img, .popup-errado .modal img{
+  width: 140px;
 }
 .popup-certo .modal button{
   font-size: 30px;
@@ -125,13 +138,39 @@ img[name= '100']{
   border-radius: 12px;
   background: rgb(2, 105, 2);
   color: white;
-  transition: all ease 0.2s;
+  transition: all ease 0.1s;
+}
+.popup-errado .modal button{
+  font-size: 30px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  background: rgb(175, 9, 9);
+  color: white;
+  transition: all ease 0.1s;  
 }
 .popup-certo .modal button:hover{
   cursor: pointer;
   background: white;
   color: rgb(2, 105, 2);
   border: 3px solid rgb(2, 105, 2);
+}
+.popup-errado .modal button:hover{
+  cursor: pointer;
+  background: white;
+  color: rgb(175, 9, 9);
+  border: 3px solid rgb(175, 9, 9);
+}
+@keyframes brilhar {
+  to{
+    box-shadow: 0px 0px 19px rgba(255, 255, 255, 0) ;
+  }
+  from{
+    background: wheat;
+    box-shadow: 0px 0px 69px rgba(255, 255, 255, 0.685) ;
+  }
+
 }
 @media screen and (max-width:900px) {
   .nota{
@@ -155,5 +194,12 @@ img[name= '100']{
   }
   img[name= '100'] {
     left: 78%;
+  }
+  .questao{
+    width:80%;
+  }
+  .troco{
+    font-size: 20px;
+    width:20%;
   }
 }

@@ -6,6 +6,8 @@ import Nota20 from './images/20.jpg'
 import Nota50 from './images/50.jpg'
 import Nota100 from './images/100.jpg'
 import { useEffect, useState } from 'react';
+import Certo from './images/certo.png'
+import Errado from './images/errado.png'
 
 
 
@@ -32,7 +34,9 @@ function App() {
   const [count20, setcount20] = useState(0)
   const [count50, setcount50] = useState(0)
   const [count100, setcount100] = useState(0)
+  const [popup_errado, setpopup_errado] = useState(false)
   const [ popup_certo, setpopup_certo] = useState(false)
+  const [animation, setanimation] = useState(false)
   const pos = 27
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
@@ -62,12 +66,16 @@ function App() {
     settroco(troco+parseInt(nota))
     if(troco+parseInt(nota) > resposta){
       setdisplay_troco('troco errado')
+      setpopup_errado(true)
     }
     if(troco+parseInt(nota) === resposta){
       setdisplay_troco('troco certo')
       setpopup_certo(true)
     }
-    console.log(count2)
+    setanimation(true)
+    setTimeout(() =>{
+      setanimation(false)
+    }, 600)
   }
   useEffect(() =>{
     reacarregar()
@@ -86,6 +94,7 @@ function App() {
     setpergunta_principal(r[0])
     setresposta(r[1])
     setpopup_certo(false)
+    setpopup_errado(false)
     settroco(0.00)
     setdisplay_troco('troco')
     setnotas([<></>])
@@ -124,13 +133,21 @@ function App() {
     <div className="App">
       <div className={popup_certo?'popup-certo show': 'popup-certo'}>
         <div className='modal'>
+          <img src={Certo} alt='certo'></img>
           <p>O troco foi correto!</p>
           <button onClick={() => apagar_notas()}>OK</button>
         </div>
       </div>
+      <div className={popup_errado?'popup-errado show': 'popup-errado'}>
+        <div className='modal'>
+          <img src={Errado} alt='errado'></img>
+          <p>O troco errado!</p>
+          <button onClick={() => apagar_notas()}>OK</button>
+        </div>
+      </div>
       <div className='pergunta'>
+        <div id={animation? 'troco': ''}  className={display_troco}>R$ {troco}</div>
         <div className='questao'>
-          <div onClick={(e) => remover_nota(e.currentTarget.tagName, e.currentTarget.id)} className={display_troco}>R$ {troco}</div>
           <p>{pergunta_principal}</p>
         </div>
       </div>
