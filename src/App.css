@@ -34,7 +34,11 @@
   align-items: center;
   width: 90%;
 }
-
+.cronometro{
+  font-family: Digital;
+  text-align: center;
+  width: 100%;
+}
 .cedulas{
   width: 100%;
   height: 10%;
