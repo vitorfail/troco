@@ -26,12 +26,15 @@
   top: 0;
 }
 .questao{
+  display: flex;
+  flex-direction: column;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
 }
+
 .cedulas{
   width: 100%;
   height: 10%;
@@ -109,12 +112,14 @@ img[name= '100']{
   width: 100%;
   height: 100%;
   position: absolute;
-  background: rgba(0, 0, 0, 0.589);
+  background: rgba(0, 0, 0, 0.517);
 }
 .popup-certo.show, .popup-errado.show{
   display: flex;
 }
 .popup-certo .modal, .popup-errado .modal{
+  animation-name: aparecer;
+  animation-duration: 0.2s;
   font-size: 30px;
   transition: all ease 0.2s;
   background: white;
@@ -124,8 +129,7 @@ img[name= '100']{
   flex-direction: column;
   width: 600px;
   height: 350px;
-  border-radius: 20px;
-  box-shadow: 0px, 0px, 0px, 16px rgba(0, 0, 0, 0.726);
+  box-shadow: 3px 3px  22px rgba(0, 0, 0, 0.986);
 }
 .popup-certo .modal img, .popup-errado .modal img{
   width: 140px;
@@ -164,13 +168,25 @@ img[name= '100']{
 }
 @keyframes brilhar {
   to{
+    color:black;
     box-shadow: 0px 0px 19px rgba(255, 255, 255, 0) ;
   }
   from{
+    color:black;
     background: wheat;
     box-shadow: 0px 0px 69px rgba(255, 255, 255, 0.685) ;
   }
 
+}
+@keyframes aparecer {
+  from{
+    opacity: 0;
+    scale: 0;
+  }
+  to{
+    opacity: 1;
+    scale: 1;
+  }
 }
 @media screen and (max-width:900px) {
   .nota{

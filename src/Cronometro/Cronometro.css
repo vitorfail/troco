@@ -1,0 +1,9 @@
+@font-face {
+    font-family:Digital;
+    src: url('./../font/Calculator.ttf');
+}
+.cronometro{
+    font-family: Digital;
+    text-align: center;
+    width: 100%;
+  }

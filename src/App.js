@@ -38,6 +38,8 @@ function App() {
   const [ popup_certo, setpopup_certo] = useState(false)
   const [animation, setanimation] = useState(false)
   const pos = 27
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
     var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
@@ -78,8 +80,39 @@ function App() {
     }, 600)
   }
   useEffect(() =>{
-    reacarregar()
-  }, [])
+    if(isRunning === false){
+      reacarregar()
+    }
+    let intervalId;
+    if (isRunning) {
+      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
+      intervalId = setInterval(() => setTime(time + 1), 10);
+    }
+      return () => clearInterval(intervalId);
+  }, [isRunning, time]);
+
+  // Hours calculation
+  const hours = Math.floor(time / 360000);
+
+  // Minutes calculation
+  const minutes = Math.floor((time % 360000) / 6000);
+
+  // Seconds calculation
+  const seconds = Math.floor((time % 6000) / 100);
+
+  // Milliseconds calculation
+  const milliseconds = time % 100;
+
+  // Method to start and stop timer
+  const startAndStop = () => {
+    console.log('testando')
+    setIsRunning(!isRunning);
+  };
+
+  // Method to reset timer back to 0
+  const reset = () => {
+    setTime(0);
+  }
   function reacarregar(){
     var r = perguntas[Math.floor(Math.random()*perguntas.length)]
     setpergunta_principal(r[0])
@@ -146,8 +179,13 @@ function App() {
         </div>
       </div>
       <div className='pergunta'>
-        <div id={animation? 'troco': ''}  className={display_troco}>R$ {troco}</div>
+        <div id={animation? 'troco': ''} onClick={() => startAndStop()} className={display_troco}>R$ {troco}</div>
         <div className='questao'>
+          <p className='cronometro'>
+            {hours}:{minutes.toString().padStart(2, "0")}:
+            {seconds.toString().padStart(2, "0")}:
+            {milliseconds.toString().padStart(2, "0")}
+          </p>
           <p>{pergunta_principal}</p>
         </div>
       </div>
