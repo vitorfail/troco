@@ -10,6 +10,7 @@ import Certo from './images/certo.png'
 import Errado from './images/errado.png'
 import Vermelho from './Vermelho/Vermelho';
 import Verde from './Verde/Verde';
+import Loading from './Loading/Loading';
 
 
 
@@ -60,6 +61,7 @@ function App() {
   const [contagem_de_acertos, setcontagem_de_acertos] = useState(0)
   const [rank,setrank] = useState('')
   const [cor_rank, setcor_rank] = useState(false)
+  const [loading, setloading] = useState(true)
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
     var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
@@ -109,6 +111,9 @@ function App() {
       if(inicio === false){
         reacarregar()
         setpopup_inicio(true)
+        setTimeout(() =>{
+          setloading(false)
+        }, 1000)
       }
     }
     let intervalId;
@@ -234,6 +239,7 @@ function App() {
   }
   return (
     <div className="App">
+      <Loading>{loading}</Loading>
       <div className={popup_certo?'popup-certo show': 'popup-certo'}>
         <div className='modal'>
           <img src={Certo} alt='certo'></img>
