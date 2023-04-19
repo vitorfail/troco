@@ -45,7 +45,7 @@ function App() {
   const [animation, setanimation] = useState(false)
   const [inicio, setinicio] = useState(false)
   const pos = 27
-  const [time, setTime] = useState(1000);
+  const [time, setTime] = useState(12000);
   const [isRunning, setIsRunning] = useState(false);
   const [contagem_de_acertos, setcontagem_de_acertos] = useState(0)
   const [rank,setrank] = useState('')
@@ -154,7 +154,6 @@ function App() {
 
   // Method to start and stop timer
   const startAndStop = () => {
-    console.log('testando')
     setIsRunning(!isRunning);
   };
 
@@ -174,7 +173,7 @@ function App() {
     setpopup_certo(false)
     settroco(0.00)
     setdisplay_troco('troco')
-    
+    setpopup_resultado(false)
   }
   function apagar_notas(){
     var r = perguntas[Math.floor(Math.random()*perguntas.length)]
@@ -253,7 +252,7 @@ function App() {
             <h3>Rank:</h3>
             <p className={cor_rank? 'class-verde': 'class-vermelho'}>{rank}</p>
           </div>
-          <button onClick={() => iniciar()}>OK</button>
+          <button onClick={() => window.location.reload()}>OK</button>
         </div>
       </div>
       <div className='pergunta'>
