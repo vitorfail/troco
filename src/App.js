@@ -8,6 +8,8 @@ import Nota100 from './images/100.jpg'
 import { useEffect, useState } from 'react';
 import Certo from './images/certo.png'
 import Errado from './images/errado.png'
+import Vermelho from './Vermelho/Vermelho';
+import Verde from './Verde/Verde';
 
 
 
@@ -20,14 +22,15 @@ function App() {
           <img src={Nota50} onClick={() => remover_nota('50', '50c')} id='50c' name='50' alt='50' className='nota'/>
           <img src={Nota100} onClick={() => remover_nota('100', '100c')} id='100c' name='100' alt='100' className='nota'/>
   </>])
-  const perguntas = [["A conto ficou por R$ 18,00 e o cliente deu um nota de R$ 50,00", 32], 
-  ["O preço foi R$ 31,00 e deram uma nota de R$ 100,00", 69],
-  ["O serviço saiu por R$ 7,00 e te entregam um nota de R$ 20,00", 13], 
-  ["O serviço saiu por R$ 32,00 e te entregam duas nota de R$ 20,00", 8],
-  ["A pizza foi R$ 49,00 e te entregam 4 notas de R$ 20,00", 31],
-  ["O doce foi R$ 23,00 e te entregam uma de R$ 50,00", 27],
-  ["A troca saiu por R$ 148,00 e te entregam 2 notas R$ 100,00", 52],
-  ["A macaneta saiu por R$ 19,00 e te entregam 2 notas R$ 20,00", 11]]
+  const perguntas = [
+    [<p>A conto ficou por <Vermelho>R$ 18,00</Vermelho> e o cliente deu <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 32], 
+  [<p>O preço foi <Vermelho>R$ 31,00</Vermelho> e deram <Verde>1</Verde> nota de <Verde>R$ 100,00</Verde></p>, 69],
+  [<p>O serviço saiu por <Vermelho>R$ 7,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 20,00</Verde></p>, 13], 
+  [<p>O serviço saiu por <Vermelho>R$ 32,00</Vermelho> e te entregam <Verde>2</Verde> nota de <Verde>R$ 20,00</Verde></p>, 8],
+  [<p>A pizza foi <Vermelho>R$ 49,00</Vermelho> e te entregam <Verde>4</Verde> notas de <Verde>R$ 20,00</Verde></p>, 31],
+  [<p>O doce foi <Vermelho>R$ 23,00</Vermelho> e te entregam <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 27],
+  [<p>A troca saiu por <Vermelho>R$ 148,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 52],
+  [<p>A macaneta saiu por <Vermelho>R$ 19,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 20,00</Verde></p>, 11]]
   const [ pergunta_principal, setpergunta_principal] = useState('')
   const [ resposta, setresposta] = useState(0)
   const [troco, settroco] = useState(0.00)
@@ -78,6 +81,7 @@ function App() {
     settroco(troco+parseInt(nota))
     if(troco+parseInt(nota) > resposta){
       setIsRunning(false)
+      setTime(time-2000)
       setdisplay_troco('troco errado')
       setpopup_errado(true)
     }
@@ -234,6 +238,8 @@ function App() {
         <div className='modal'>
           <img src={Errado} alt='errado'></img>
           <p>O troco errado!</p>
+          <p>O correto seria <Vermelho>R$ {resposta}</Vermelho> </p>
+          <p>Você acabou de perder <Vermelho>20 segundos</Vermelho> </p>
           <button onClick={() => voltar_ao_jogo()}>OK</button>
         </div>
       </div>
@@ -263,7 +269,7 @@ function App() {
             {seconds.toString().padStart(2, "0")}:
             {milliseconds.toString().padStart(2, "0")}
           </p>
-          <p>{pergunta_principal}</p>
+          <div className='pergunta_principal'>{pergunta_principal}</div>
         </div>
       </div>
       <div className='espaco_notas'>

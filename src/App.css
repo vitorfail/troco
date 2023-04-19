@@ -85,6 +85,12 @@
   background: rgb(37, 37, 37);
   top: 0;
 }
+.pergunta_principal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .questao{
   display: flex;
   flex-direction: column;
