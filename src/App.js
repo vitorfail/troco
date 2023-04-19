@@ -23,7 +23,11 @@ function App() {
   const perguntas = [["A conto ficou por R$ 18,00 e o cliente deu um nota de R$ 50,00", 32], 
   ["O preço foi R$ 31,00 e deram uma nota de R$ 100,00", 69],
   ["O serviço saiu por R$ 7,00 e te entregam um nota de R$ 20,00", 13], 
-  ["O serviço saiu por R$ 32,00 e te entregam duas nota de R$ 20,00", 8]]
+  ["O serviço saiu por R$ 32,00 e te entregam duas nota de R$ 20,00", 8],
+  ["A pizza foi R$ 49,00 e te entregam 4 notas de R$ 20,00", 31],
+  ["O doce foi R$ 23,00 e te entregam uma de R$ 50,00", 27],
+  ["A troca saiu por R$ 148,00 e te entregam 2 notas R$ 100,00", 52],
+  ["A macaneta saiu por R$ 19,00 e te entregam 2 notas R$ 20,00", 11]]
   const [ pergunta_principal, setpergunta_principal] = useState('')
   const [ resposta, setresposta] = useState(0)
   const [troco, settroco] = useState(0.00)
@@ -41,9 +45,11 @@ function App() {
   const [animation, setanimation] = useState(false)
   const [inicio, setinicio] = useState(false)
   const pos = 27
-  const [time, setTime] = useState(12000);
+  const [time, setTime] = useState(1000);
   const [isRunning, setIsRunning] = useState(false);
   const [contagem_de_acertos, setcontagem_de_acertos] = useState(0)
+  const [rank,setrank] = useState('')
+  const [cor_rank, setcor_rank] = useState(false)
   function adicionar_nota(nota, nome){
     var lista_conta = {'2':count2, '5':count5, '10':count10, '20':count20, '50':count50, '100':count100}
     var lista_pos = {'2':1, '5':2, '10':3, '20':4, '50':5, '100':6}
@@ -79,7 +85,8 @@ function App() {
       setIsRunning(false)
       setdisplay_troco('troco certo')
       setpopup_certo(true)
-      setcontagem_de_acertos(contagem_de_acertos+1)
+      var acertos = contagem_de_acertos+1
+      setcontagem_de_acertos(acertos)
     }
     setanimation(true)
     setTimeout(() =>{
@@ -88,8 +95,8 @@ function App() {
   }
   useEffect(() =>{
     if(isRunning === false){
-      reacarregar()
       if(inicio === false){
+        reacarregar()
         setpopup_inicio(true)
       }
     }
@@ -97,6 +104,38 @@ function App() {
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time - 1), 10);
+      if(time-1 === 0){
+        setIsRunning(false)
+        setpopup_resultado(true)
+        if(contagem_de_acertos > 10){
+          setcor_rank(true)
+          setrank('S')
+        }
+        if(contagem_de_acertos === 10){
+          setrank('A')
+          setcor_rank(true)
+        }
+        if(contagem_de_acertos < 10 && contagem_de_acertos >= 8){
+          setrank('A+')
+          setcor_rank(true)
+        }
+        if(contagem_de_acertos < 8 && contagem_de_acertos >= 6){
+          setrank('B')
+          setcor_rank(true)
+        }
+        if(contagem_de_acertos < 6 && contagem_de_acertos >= 4){
+          setrank('C')
+          setcor_rank(false)
+        }
+        if(contagem_de_acertos === 3){
+          setrank('D')
+          setcor_rank(false)
+        }
+        if(contagem_de_acertos < 3 && contagem_de_acertos >= 0){
+          setrank('E')
+          setcor_rank(false)
+        }  
+      }
     }
       return () => clearInterval(intervalId);
   }, [isRunning, time]);
@@ -208,7 +247,12 @@ function App() {
       </div>
       <div className={popup_resultado?'popup-resultado show': 'popup-resultado'}>
         <div className='modal'>
-          <p>ACABOU!!Ao todo você acertou {contagem_de_acertos} peguntas. Parabens!!</p>
+          <p className="titulo">ACABOU!!</p>
+          <p>Ao todo você acertou {contagem_de_acertos} peguntas. Parabens!!</p>          
+          <div className='rank'>
+            <h3>Rank:</h3>
+            <p className={cor_rank? 'class-verde': 'class-vermelho'}>{rank}</p>
+          </div>
           <button onClick={() => iniciar()}>OK</button>
         </div>
       </div>
