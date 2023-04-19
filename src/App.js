@@ -24,13 +24,20 @@ function App() {
   </>])
   const perguntas = [
     [<p>A conto ficou por <Vermelho>R$ 18,00</Vermelho> e o cliente deu <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 32], 
-  [<p>O preço foi <Vermelho>R$ 31,00</Vermelho> e deram <Verde>1</Verde> nota de <Verde>R$ 100,00</Verde></p>, 69],
-  [<p>O serviço saiu por <Vermelho>R$ 7,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 20,00</Verde></p>, 13], 
-  [<p>O serviço saiu por <Vermelho>R$ 32,00</Vermelho> e te entregam <Verde>2</Verde> nota de <Verde>R$ 20,00</Verde></p>, 8],
-  [<p>A pizza foi <Vermelho>R$ 49,00</Vermelho> e te entregam <Verde>4</Verde> notas de <Verde>R$ 20,00</Verde></p>, 31],
-  [<p>O doce foi <Vermelho>R$ 23,00</Vermelho> e te entregam <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 27],
-  [<p>A troca saiu por <Vermelho>R$ 148,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 52],
-  [<p>A macaneta saiu por <Vermelho>R$ 19,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 20,00</Verde></p>, 11]]
+    [<p>O preço foi <Vermelho>R$ 31,00</Vermelho> e deram <Verde>1</Verde> nota de <Verde>R$ 100,00</Verde></p>, 69],
+    [<p>O serviço saiu por <Vermelho>R$ 7,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 20,00</Verde></p>, 13], 
+    [<p>O serviço saiu por <Vermelho>R$ 32,00</Vermelho> e te entregam <Verde>2</Verde> nota de <Verde>R$ 20,00</Verde></p>, 8],
+    [<p>A pizza foi <Vermelho>R$ 49,00</Vermelho> e te entregam <Verde>4</Verde> notas de <Verde>R$ 20,00</Verde></p>, 31],
+    [<p>O doce foi <Vermelho>R$ 23,00</Vermelho> e te entregam <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 27],
+    [<p>A troca saiu por <Vermelho>R$ 148,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 52],
+    [<p>A macaneta saiu por <Vermelho>R$ 19,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 20,00</Verde></p>, 11],
+    [<p>O pendrive ficou por <Vermelho>R$ 73,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 23],
+    [<p>O presente foi <Vermelho>R$ 37,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde></p>, 23],
+    [<p>O concerto foi <Vermelho>R$ 213,00</Vermelho> e te entregam <Verde>3</Verde> notas de <Verde>R$ 100,00</Verde></p>, 97],
+    [<p>Ao encher o tanque do carro  o valor ficou por <Vermelho>R$ 15,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde></p>, 35],
+    [<p>Depois de formatar o celular o celular o concerto saiu por <Vermelho>R$ 41,00</Vermelho> e te entregam <Verde>3</Verde> notas de <Verde>R$ 20,00</Verde></p>, 19],
+    [<p>As compras fecharam em <Vermelho>R$ 54,00</Vermelho> e o cliente te entregam <Verde>2</Verde> notas de <Verde>R$ 50,00</Verde></p>, 46]
+  ]
   const [ pergunta_principal, setpergunta_principal] = useState('')
   const [ resposta, setresposta] = useState(0)
   const [troco, settroco] = useState(0.00)
