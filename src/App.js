@@ -90,7 +90,9 @@ function App() {
     settroco(troco+parseInt(nota))
     if(troco+parseInt(nota) > resposta){
       setIsRunning(false)
-      setTime(time-2000)
+      var sub = time-2000
+      if(sub <= 0) setTime(0)
+      if(sub > 0) setTime(sub)
       setdisplay_troco('troco errado')
       setpopup_errado(true)
     }
@@ -120,7 +122,7 @@ function App() {
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time - 1), 10);
-      if(time-1 === 0){
+      if(time-1 === 0 || time ===0){
         setIsRunning(false)
         setpopup_resultado(true)
         if(contagem_de_acertos > 10){
