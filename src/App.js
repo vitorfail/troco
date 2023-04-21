@@ -38,6 +38,10 @@ function App() {
     [<p>Ao encher o tanque do carro  o valor ficou por <Vermelho>R$ 15,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde></p>, 35],
     [<p>Depois de formatar o celular o celular o concerto saiu por <Vermelho>R$ 41,00</Vermelho> e te entregam <Verde>3</Verde> notas de <Verde>R$ 20,00</Verde></p>, 19],
     [<p>As compras fecharam em <Vermelho>R$ 54,00</Vermelho> e o cliente te entregam <Verde>2</Verde> notas de <Verde>R$ 50,00</Verde></p>, 46]
+    [<p>Maria comprou uma pizza média por <Vermelho>R$ 21,00</Vermelho> e ela entrega <Verde>3</Verde> notas de <Verde>R$ 10,00</Verde> passe o troco</p>, 9]
+    [<p>Roberto Carlos foi comprar uma chuteira por <Vermelho>R$ 117,00</Vermelho> e te passou <Verde>2</Verde> notas de <Verde>R$ 200,00</Verde>, passe o troco</p>, 83]
+    [<p>Bolsonaro comprou um pacote de viagra por <Vermelho>R$ 31,00</Vermelho> e te passou <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde>, passe o troco</p>, 19]
+    [<p>Asheley esta com uma dor horrível na perna e comprou muitos inflamatórios que sairam, o todo por <Vermelho>R$ 42,00</Vermelho> e ela te passou <Verde>1</Verde> nota de <Verde>R$ 100,00</Verde>, passe o troco</p>, 58]
   ]
   const [ pergunta_principal, setpergunta_principal] = useState('')
   const [ resposta, setresposta] = useState(0)
