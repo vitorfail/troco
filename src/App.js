@@ -16,12 +16,12 @@ import Loading from './Loading/Loading';
 
 function App() {
   const [ notas, setnotas] = useState([<>
-          <img src={Nota2} onClick={() => remover_nota('2', '2c')} id='2c' name='2' alt='2' className='nota' />
-          <img src={Nota5} onClick={() => remover_nota('5', '5c')} id='5c' name='5' alt='5' className='nota' />
-          <img src={Nota10} onClick={() => remover_nota('10', '10c')} id='10c' name='10' alt='10' className='nota'/>
-          <img src={Nota20} onClick={() => remover_nota('20', '20c')} id='20c' name='20' alt='20' className='nota'/>
-          <img src={Nota50} onClick={() => remover_nota('50', '50c')} id='50c' name='50' alt='50' className='nota'/>
-          <img src={Nota100} onClick={() => remover_nota('100', '100c')} id='100c' name='100' alt='100' className='nota'/>
+          <img src={Nota2}  key={1} onClick={() => remover_nota('2', '2c')} id='2c' name='2' alt='2' className='nota' />
+          <img src={Nota5}  key={2} onClick={() => remover_nota('5', '5c')} id='5c' name='5' alt='5' className='nota' />
+          <img src={Nota10} key={3}  onClick={() => remover_nota('10', '10c')} id='10c' name='10' alt='10' className='nota'/>
+          <img src={Nota20} key={4}  onClick={() => remover_nota('20', '20c')} id='20c' name='20' alt='20' className='nota'/>
+          <img src={Nota50} key={5}  onClick={() => remover_nota('50', '50c')} id='50c' name='50' alt='50' className='nota'/>
+          <img src={Nota100} key={6}  onClick={() => remover_nota('100', '100c')} id='100c' name='100' alt='100' className='nota'/>
   </>])
   const perguntas = [
     [<p>A conto ficou por <Vermelho>R$ 18,00</Vermelho> e o cliente deu <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 32], 
@@ -32,7 +32,7 @@ function App() {
     [<p>O doce foi <Vermelho>R$ 23,00</Vermelho> e te entregam <Verde>1</Verde> de <Verde>R$ 50,00</Verde></p>, 27],
     [<p>A troca saiu por <Vermelho>R$ 148,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 52],
     [<p>A macaneta saiu por <Vermelho>R$ 19,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 20,00</Verde></p>, 11],
-    [<p>O pendrive ficou por <Vermelho>R$ 73,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 237],
+    [<p>O pendrive ficou por <Vermelho>R$ 73,00</Vermelho> e te entregam <Verde>2</Verde> notas <Verde>R$ 100,00</Verde></p>, 27],
     [<p>O presente foi <Vermelho>R$ 37,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde></p>, 13],
     [<p>O concerto foi <Vermelho>R$ 213,00</Vermelho> e te entregam <Verde>3</Verde> notas de <Verde>R$ 100,00</Verde></p>, 97],
     [<p>Ao encher o tanque do carro  o valor ficou por <Vermelho>R$ 15,00</Vermelho> e te entregam <Verde>1</Verde> nota de <Verde>R$ 50,00</Verde></p>, 35],
@@ -198,7 +198,9 @@ function App() {
     setpopup_resultado(false)
   }
   function apagar_notas(){
-    var r = perguntas[Math.floor(Math.random()*perguntas.length)]
+    var n = Math.floor(Math.random()*perguntas.length)
+    var r = perguntas[n]
+    console.log(n)
     setpergunta_principal(r[0])
     setresposta(r[1])
     setpopup_certo(false)
@@ -214,12 +216,12 @@ function App() {
     setcount100(0)
     setTimeout(() => {
       setnotas([<>
-      <img src={Nota2} onClick={() => remover_nota('2', '2c')} id='2c' name='2' alt='2' className='nota' />
-      <img src={Nota5} onClick={() => remover_nota('5', '5c')} id='5c' name='5' alt='5' className='nota' />
-      <img src={Nota10} onClick={() => remover_nota('10', '10c')} id='10c' name='10' alt='10' className='nota'/>
-      <img src={Nota20} onClick={() => remover_nota('20', '20c')} id='20c' name='20' alt='20' className='nota'/>
-      <img src={Nota50} onClick={() => remover_nota('50', '50c')} id='50c' name='50' alt='50' className='nota'/>
-      <img src={Nota100} onClick={() => remover_nota('100', '100c')} id='100c' name='100' alt='100' className='nota'/>
+      <img src={Nota2} key={1} onClick={() => remover_nota('2', '2c')} id='2c' name='2' alt='2' className='nota' />
+      <img src={Nota5} key={2} onClick={() => remover_nota('5', '5c')} id='5c' name='5' alt='5' className='nota' />
+      <img src={Nota10} key={3} onClick={() => remover_nota('10', '10c')} id='10c' name='10' alt='10' className='nota'/>
+      <img src={Nota20} key={4} onClick={() => remover_nota('20', '20c')} id='20c' name='20' alt='20' className='nota'/>
+      <img src={Nota50} key={5} onClick={() => remover_nota('50', '50c')} id='50c' name='50' alt='50' className='nota'/>
+      <img src={Nota100} key={6} onClick={() => remover_nota('100', '100c')} id='100c' name='100' alt='100' className='nota'/>
     </>])
 
     }, 1000)
